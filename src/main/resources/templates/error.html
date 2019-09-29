@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/default"
+>
+<body>
+<div layout:fragment="content" class="content">
+    <h2 style="color:red;margin:50px" th:text="${error}"></h2>
+</div>
+</body>
+</html>

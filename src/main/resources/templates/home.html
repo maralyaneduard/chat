@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/default"
+>
+    <body>
+        <div layout:fragment="content" class="content">
+            <div class="info" sec:authorize="hasAuthority('ADMIN')">For creating admin or user click on <input class="header-button" type="button" value="Users" onclick="location.href='/users'"/></div>
+            <div class="info" sec:authorize="hasAuthority('ADMIN')">For creating room click on <input class="header-button" type="button" value="Rooms" onclick="location.href='/rooms'"/></div>
+            <div class="info">For entering chat click on <input class="header-button" type="button" value="Chat" onclick="location.href='/chat/home'"/></div>
+        </div>
+    </body>
+</html>

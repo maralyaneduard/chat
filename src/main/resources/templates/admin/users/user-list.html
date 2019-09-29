@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en"
+      layout:decorator="layouts/default" xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+    <div layout:fragment="content" class="content">
+        <input type="button" value="Add user" onclick="location.href='/users/add'" />
+        <table class="table">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Position</th>
+                <th>Actions</th>
+            </tr>
+
+            <tr th:each="user: ${users}">
+                <td class="profile"><a th:text="${user.name}" th:href="@{/users/profile/{path}(path=${user.id})}"> </a> </td>
+                <td th:text="${user.email}"></td>
+                <td th:text="${user.role.role}"></td>
+                <td>
+                    <a class="editIcon" th:href="@{/users/update/{path}(path=${user.id})}">edit</a>
+                    <a class="deleteIcon" th:href="@{/users/delete/{path}(path=${user.id})}">delete</a>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+</body>
+</html>

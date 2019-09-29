@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en"
+      layout:decorator="layouts/default" xmlns:th="http://www.w3.org/1999/xhtml">
+    <body>
+        <div layout:fragment="content" class="content">
+            <div class="chat-rooms-container">
+                <h2>Chat rooms</h2>
+                <div class="chat-room" th:each="room: ${rooms}">
+                    <a th:href="@{/chat/home/{path}(path=${room.id})}" class="room-button" th:text="${room.name}" th:id="${room.id}"> </a>
+                </div>
+            </div>
+            <div class="chat-message-container">
+                <div id="chat-message-list" class="chat-message-list">
+                    <div th:each="message: ${messageDtos}" class='chat-message'>
+                        <span th:text="${message.userName}" class='chat-username'></span>:
+                        <span th:text="${message.text}" class='chat-message'></span>
+                    </div>
+                </div>
+                <div class="chat-message-input">
+                    <textarea id="messageBox"></textarea>
+                    <button id="sendMessage">Send</button>
+                </div>
+            </div>
+            <div id="chat-users-container" class="chat-users-container">
+                <h2>Users in the room</h2>
+                <div th:id="${chatUser.name}" th:each="chatUser: ${chatUserDtos}" class='chat-user'>
+                    <span th:text="${chatUser.name}" class='chat-username'></span>
+                </div>
+                <div class='clear-button'>
+                    <button sec:authorize="hasAuthority('ADMIN')" id="clearButton">Clear room</button>
+                </div>
+            </div>
+            <script th:inline="javascript">
+                /*<![CDATA[*/
+                var selectedRoomId = [[${selectedRoomId}]];
+                var userName = [[${userName}]];
+                /*]]>*/
+            </script>
+        </div>
+    </body>
+</html>

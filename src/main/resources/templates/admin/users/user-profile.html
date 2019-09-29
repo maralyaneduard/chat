@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en"
+      layout:decorator="layouts/default">
+<body>
+    <div layout:fragment="content" class="content">
+        <div class="profile-div">
+            <h2>User profile</h2>
+            <div class="user-form">
+                <img alt="Image" th:src="@{image/{path}(path=${user.picName})}" width="250" height="250"/>
+            </div>
+            <div class="user-form">
+                <div>
+                    <label>User name: </label>
+                    <strong><label th:text="${user.name}"/></strong>
+                </div>
+            </div>
+            <div class="user-form">
+                <div>
+                    <label>User email: </label>
+                    <strong><label th:text="${user.email}"/></strong>
+                </div>
+            </div>
+            <div class="user-form">
+                <div>
+                    <label>User role: </label>
+                    <strong><label th:text="${user.role.role}"/></strong>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

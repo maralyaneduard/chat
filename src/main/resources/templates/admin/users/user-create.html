@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en"
+      layout:decorator="layouts/default">
+<body>
+    <div layout:fragment="content" class="content">
+        <form autocomplete="off" action="#" th:action="@{/users/add}"
+              th:object="${userDto}" method="post" role="form" enctype="multipart/form-data">
+            <h2>Add new user</h2>
+            <div class="user-form">
+                <div>
+                    <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="validation-message"></label>
+                    <input type="text" th:field="*{name}" placeholder="Name"/>
+                </div>
+            </div>
+
+            <div class="user-form">
+                <div>
+                    <input type="text" th:field="*{email}" placeholder="Email" class="form-control" />
+                    <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}"class="validation-message"></label>
+                </div>
+            </div>
+            <div class="user-form">
+                <div>
+                    <input type="password" th:field="*{password}" placeholder="Password" /> <label
+                        th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></label>
+                </div>
+            </div>
+
+            <div class="user-form">
+                <div>
+                    <select th:field="*{role}"  id="role">
+                        <option value="0">select role</option>
+                        <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.role}"></option>
+                    </select>
+                </div>
+            </div>
+
+            <label for="image">Image:</label>
+            <input type="file" id="image" name="image"/><br>
+
+            <div class="user-form">
+                <div>
+                    <button type="submit">Save</button>
+                </div>
+            </div>
+
+            <span th:utext="${successMessage}"></span>
+        </form>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en"
+      layout:decorator="layouts/default" xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+<div layout:fragment="content" class="content">
+    <table class="table">
+        <tr>
+            <th>User name</th>
+            <th>Room name</th>
+            <th>Action</th>
+        </tr>
+
+        <tr th:each="userRoom: ${userRooms}">
+            <td class="profile" th:text="${userRoom.userName}"></td>
+            <td class="profile" th:text="${userRoom.roomName}"></td>
+            <td>
+                <!--<a class="deleteIcon" th:href="@{/chat/user/remove/{path1}/{path2}(path1=${userRoom.roomId},path2=${userRoom.userId})}">delete</a>-->
+                <a class="deleteIcon" th:href="${'/chat/user/remove/' + {userRoom.roomId} + '/' + {userRoom.userId}}">Remove user</a>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

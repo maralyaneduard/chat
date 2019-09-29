@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en"
+      layout:decorator="layouts/default" xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+    <div layout:fragment="content" class="content">
+        <input type="button" value="Add room" onclick="location.href='/rooms/add'" />
+        <table class="table">
+            <tr>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+
+            <tr th:each="room: ${rooms}">
+                <td class="profile"><a th:text="${room.name}" th:href="@{/rooms/{path}(path=${room.id})}"> </a> </td>
+                <td>
+                    <a class="editIcon" th:href="@{/rooms/update/{path}(path=${room.id})}">edit</a>
+                    <a class="deleteIcon" th:href="@{/rooms/delete/{path}(path=${room.id})}">delete</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

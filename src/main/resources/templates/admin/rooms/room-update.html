@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en"
+      layout:decorator="layouts/default">
+<body>
+    <div layout:fragment="content" class="content">
+        <form autocomplete="off" action="#" th:action="@{/rooms/update}"
+              th:object="${room}" method="post" role="form">
+            <h2>Update room</h2>
+            <div style="display: none;">
+                <input type="text" th:field="*{id}"/>
+            </div>
+            <div class="user-form">
+                <div>
+                    <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="validation-message"></label>
+                    <input type="text" th:field="*{name}" placeholder="Name"/>
+                </div>
+            </div>
+            <div class="user-form">
+                <div>
+                    <button type="submit">Save</button>
+                </div>
+            </div>
+
+            <span th:utext="${successMessage}"></span>
+        </form>
+    </div>
+</body>
+</html>
